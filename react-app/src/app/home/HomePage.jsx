@@ -7,7 +7,7 @@ function HomePage() {
 
   useEffect(() => {
     axios
-      .get(`https://jsonplaceholder.typicode.com/photos?seach=${seachText}`)
+      .get(`https://free-images-api.p.rapidapi.com/images/wallpaper?seach=${seachText}`)
       .then((data) => {
         setImagesList(data.data || []);
       })
@@ -18,27 +18,31 @@ function HomePage() {
 
   const handleSearch = (e) => {};
   return (
-    <div className="container bg-body-secondary vh-100">
-      <form className="form-inline" >
+    <div className="container bg-body-secondary vh-100 m-2rem">
+      <form className="form-inline " >
         <div className="form-group mx-sm-3 mb-2">
+           
           <label for="inputText" className="sr-only">
             Search
           </label>
-          <input
+          <div className="inputText d-flex">
+            <input
             type="text"
             className="form-control"
             id="inputText"
             placeholder="Search images"
-            onChange={(e) => setSearchText(e.target.value)}
+            onChange={(e) => setSearchText(e.target.value)} 
           />
-        </div>
-        <button
+          <button
           type="submit"
           className="btn btn-primary mb-2"
           onClick={() => handleSearch()}
         >
           Search
         </button>
+        </div>
+          </div>
+          
       </form>
       <div>
         <h1>Images:</h1>
