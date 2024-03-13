@@ -20,27 +20,32 @@ function HomePage() {
           console.log(error);
         });
     }
-  }, [Access_Key, seachText]);
+  },
+   [Access_Key, seachText]);
   console.log(imagesList);
   const handleSearch = (e) => {};
+
+
   return (
-    <div className="container bg-body-secondary vh-100 m-2rem">
-      <form className="form-inline ">
-        <div className="form-group mx-sm-3 mb-2">
+    <div className="container bg-body-secondary vh-100">
+      <form className="form-inline bg-info text-center">
+        <div className="form-group mx-sm-3 mb-3">
           <label htmlFor="inputText" className="sr-only">
-            Search
+            <div className="p-3 mb-2 fs-2 fw-bold ">
+                Find Your Images
+            </div>
           </label>
-          <div className="inputText d-flex">
+          <div className="inputText d-flex w-100 ">
             <input
               type="text"
-              className="form-control"
+              className="form-control mb-4 me-3"
               id="inputText"
               placeholder="Search images"
               onChange={(e) => setSearchText(e.target.value)}
             />
             <button
               type="submit"
-              className="btn btn-primary mb-2"
+              className="btn btn-primary mb-4"
               onClick={() => handleSearch()}
             >
               Search
@@ -48,8 +53,17 @@ function HomePage() {
           </div>
         </div>
       </form>
-      <div>
-        <h1>Images:</h1>
+      <div >
+        <nav aria-label="Page navigation example">
+           <ul className="pagination justify-content-center">
+              <li className="page-item"><a className="page-link">Previous</a></li>
+              <li className="page-item"><a className="page-link" href="#">1</a></li>
+              <li className="page-item active"><a className="page-link" href="#">2</a></li>
+              <li className="page-item"><a className="page-link" href="#">3</a></li>
+              <li className="page-item"><a className="page-link" href="#">Next</a></li>
+           </ul>
+        </nav>
+        <h3>Images:{seachText || ""}</h3>
         <div className="d-flex w-100 flex-wrap">
           {imagesList?.map((item) => {
             return (
