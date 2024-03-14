@@ -5,7 +5,17 @@ function HomePage() {
   // eslint-disable-next-line no-unused-vars
   const [imagesList, setImagesList] = useState([]);
   const [seachText, setSearchText] = useState("");
+  const [ currentPage , setCurrentPage ] = useState(1)
+  const imgsPerPage = 10;
+  const lastIndex = currentPage * imgsPerPage;
+  const firstIndex = lastIndex - imgsPerPage;
+  const imgs = imagesList.slice(firstIndex, lastIndex);
+  const npage = Math.ceil(imagesList.length / imgsPerPage)
+  const numbers = [...Array(npage + 1).keys()].slice(1)
+
+
   const Access_Key = process.env.REACT_APP_ACCESS_KEY;
+
 
   useEffect(() => {
     if (seachText.trim().length) {
@@ -22,7 +32,8 @@ function HomePage() {
     }
   },
    [Access_Key, seachText]);
-  console.log(imagesList);
+   console.log(imagesList);
+  
   const handleSearch = (e) => {};
 
 
@@ -56,11 +67,13 @@ function HomePage() {
       <div >
         <nav aria-label="Page navigation example">
            <ul className="pagination justify-content-center">
-              <li className="page-item"><a className="page-link">Previous</a></li>
-              <li className="page-item"><a className="page-link" href="#">1</a></li>
-              <li className="page-item active"><a className="page-link" href="#">2</a></li>
-              <li className="page-item"><a className="page-link" href="#">3</a></li>
-              <li className="page-item"><a className="page-link" href="#">Next</a></li>
+              <li className="page-item"><a className="page-link" href="#" onClick={prePage}>Previous</a></li>
+              {numbers.map((n, i) => (
+                <li className={`page-item ${currentPage === n ? 'active' : ''}`} key={i}><a className="page-item" href="#" onClick={()=> changeCpage(n)}>{n}</a></li>
+              ))}
+              <li className="page-item"><a className="page-link" href="#" onClick={nextPage}>Next</a></li>
+    
+              
            </ul>
         </nav>
         <h3>Images:{seachText || ""}</h3>
@@ -79,7 +92,16 @@ function HomePage() {
         </div>
       </div>
     </div>
-  );
+  )
+  function prePage(){
+
+  }
+  function changeCpage(id){
+
+  }
+  function nextPage(){
+
+  }
 }
 
 export default HomePage;
