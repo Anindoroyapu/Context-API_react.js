@@ -31,7 +31,7 @@ function HomePage() {
   };
 
   return (
-    <div className="container bg-body-secondary vh-100">
+    <div className="container bg-body-secondary min-vh-100">
       <form className="form-inline bg-info text-center" onSubmit={handleSubmit}>
         <div className="form-group mx-sm-3 mb-3">
           <label htmlFor="inputText" className="sr-only">
@@ -75,7 +75,7 @@ function HomePage() {
             </li>
             {pageNumberArr?.length === 1
               ? null
-              : pageNumberArr?.slice(0, 20)?.map((item) => {
+              : pageNumberArr?.slice(0, 5)?.map((item) => {
                   return (
                     <li
                       className={`page-link ${
@@ -108,8 +108,8 @@ function HomePage() {
                 <img
                   src={iopt(item?.urls?.full, 300)}
                   alt="..."
-                  className="img-thumbnail"
-                  style={{ width: "200px", height: "200px" }}
+                  className="img-thumbnail m-1"
+                  style={{ width: "250px", height: "250px" }}
                 />
               </div>
             );
